@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TableRow>
+        <TextView android:id="@+id/list_date" android:padding="5dp" android:layout_weight="20" android:textSize="14dp"/>
+        <TextView android:id="@+id/list_amount" android:padding="5dp" android:layout_weight="20"  android:textSize="14dp"/>
+        <TextView android:id="@+id/list_description" android:padding="5dp" android:layout_weight="60"  android:textSize="14dp"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/list_categoryName" android:padding="5dp" android:layout_weight="100" android:textSize="10dp"/>
+    </TableRow>
+</TableLayout>

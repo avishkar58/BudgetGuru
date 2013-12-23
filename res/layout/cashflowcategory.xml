@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:stretchColumns="0">
+
+    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:text="Choose a category" android:layout_span="2" android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+    </TableRow>
+
+    <TableRow android:id="@+id/cashcat_rowSelectCategory" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Spinner android:id="@+id/cashcat_category" android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+        <Button android:text="New" android:layout_width="match_parent" android:layout_height="wrap_content" android:onClick="newClicked"/>
+    </TableRow>
+
+    <TableRow android:id="@+id/cashcat_rowNewCategory" android:layout_width="match_parent" android:layout_height="wrap_content"  android:visibility="gone">
+        <LinearLayout android:layout_span="2" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+            <TextView android:text="Category Name" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+            <EditText android:id="@+id/cashcat_newCatName" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+            <TextView android:text="Type" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+            <Spinner android:id="@+id/cashcat_categoryType" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:text="Category Name"
+                                                                                                 android:layout_width="match_parent"
+                                                                                                 android:layout_height="wrap_content"/></TableRow>
+
+    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        <CheckBox android:id="@+id/cashcat_createRule" android:text="Create a rule?" android:layout_span="2" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:text="Apply this category to all messages containing the text" android:layout_span="2"
+                  android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText android:id="@+id/cashcat_containsText" android:layout_span="2" android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+    </TableRow>
+
+    <TableRow android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:id="@+id/cashcat_save" android:text="Save" android:onClick="saveClicked" android:layout_span="2"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </TableRow>
+
+</TableLayout>
