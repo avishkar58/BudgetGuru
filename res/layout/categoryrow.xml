@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:stretchColumns="0">
+    <TableRow android:padding="5dp">
+        <TextView android:padding="5dp" android:id="@+id/cat_category" android:text="Helloworld"/>
+        <TextView android:paddingRight="15dp" android:id="@+id/cat_amount" android:text="500.00"/>
+    </TableRow>
+</TableLayout>

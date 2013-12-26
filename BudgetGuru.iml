@@ -19,6 +19,7 @@
     <orderEntry type="library" name="android-sqlite-asset-helper" level="project" />
     <orderEntry type="library" name="ormlite-android-4.48" level="project" />
     <orderEntry type="library" name="ormlite-core-4.48" level="project" />
+    <orderEntry type="library" name="android-support-v4" level="project" />
   </component>
 </module>
 
