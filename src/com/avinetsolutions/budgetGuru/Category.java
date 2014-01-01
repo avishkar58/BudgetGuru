@@ -6,6 +6,9 @@ import java.io.Serializable;
  * Created by Avishkar on 2013/12/20.
  */
 public class Category implements Serializable {
+
+    public static Category UNKNOWN = new Category("Unknown", CategoryType.UNKNOWN);
+
     private int id;
     private String name;
     private CategoryType categoryType;

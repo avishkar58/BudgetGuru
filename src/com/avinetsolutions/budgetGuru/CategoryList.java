@@ -19,25 +19,13 @@ import java.util.Map;
 /**
  * Created by Avishkar on 2013/12/24.
  */
-public class CategoryList extends ListFragment {
+public class CategoryList extends BaseCashflowList {
     Map<Category, Double> categoryAmounts = new HashMap<Category, Double>();
-    private DatabaseHelper db;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setListSource() {
         try {
-            db = new DatabaseHelper(getActivity().getApplicationContext());
-            setListSource();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void setListSource() {
-        try {
-            ArrayList<Cashflow> cashflows = db.getCashflows();
+            categoryAmounts.clear();
+            ArrayList<Cashflow> cashflows = db.getCashflows(start, end);
             for(Cashflow flow : cashflows) {
                 if (categoryAmounts.containsKey(flow.getCategory())) categoryAmounts.put(flow.getCategory(), categoryAmounts.get(flow.getCategory()) + flow.getAmount());
                 else categoryAmounts.put(flow.getCategory(), flow.getAmount());

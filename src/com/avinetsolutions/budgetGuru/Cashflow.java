@@ -46,7 +46,7 @@ public class Cashflow implements Serializable{
     }
 
     public Category getCategory() {
-        return category;
+        return category == null ? Category.UNKNOWN : category;
     }
 
     public void setCategory(Category category) {

@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Avishkar on 2013/12/18.
@@ -20,19 +22,24 @@ public class DatabaseHelper extends SQLiteAssetHelper {
     private ArrayList<Category> categoryCache;
     private ArrayList<CategoryType> categoryTypeCache;
 
-    private static final String cashflowQuery = "SELECT Cashflow._id, Cashflow.Date, Cashflow.Amount, CashFlow.Description, CategoryId FROM CashFLow ORDER BY Date";
+    private static final String cashflowQuery = "SELECT Cashflow._id, Cashflow.Date, Cashflow.Amount, CashFlow.Description, CategoryId FROM CashFLow WHERE DATETIME(Cashflow.Date) >= DATETIME(?) AND DATETIME(Cashflow.Date) <= DATETIME(?) ORDER BY Date";
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public ArrayList<Cashflow> getCashflows() throws Exception {
+        return getCashflows(new Date(), new Date());
+    }
+
+    public ArrayList<Cashflow> getCashflows(Date start, Date end) throws Exception {
         ArrayList<Cashflow> results = new ArrayList<Cashflow>();
-        Cursor cursor = getReadableDatabase().rawQuery(cashflowQuery,null);
+        Cursor cursor = getReadableDatabase().rawQuery(cashflowQuery,new String[] {dateFormat.format(start), dateFormat.format(end)});
         cursor.moveToFirst();
         while (! cursor.isAfterLast()) {
             Category category = cursor.getString(4) == null ? null : getCategory(cursor.getInt(4));
-            Cashflow cashflow = new Cashflow(DateFormat.getDateInstance(DateFormat.SHORT).parse(cursor.getString(1)), cursor.getDouble(2), cursor.getString(3), category);
+            Cashflow cashflow = new Cashflow(dateFormat.parse(cursor.getString(1)), cursor.getDouble(2), cursor.getString(3), category);
             cashflow.setId(cursor.getInt(0));
             results.add(cashflow);
             cursor.moveToNext();
@@ -43,7 +50,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
     public void insertOrUpdate(Cashflow cashflow) {
         ContentValues vals = new ContentValues();
-        vals.put("Date", DateFormat.getDateInstance(DateFormat.SHORT).format(cashflow.getDate()));
+        vals.put("Date", dateFormat.format(cashflow.getDate()));
         vals.put("Amount", cashflow.getAmount());
         vals.put("Description", cashflow.getDescription());
         if (cashflow.getCategory() != null) vals.put("CategoryId", cashflow.getCategory().getId());

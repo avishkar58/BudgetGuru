@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+        android:stretchColumns="1">
 
-</LinearLayout>
+    <TableRow>
+        <TextView android:text="Start Date"/>
+        <EditText android:inputType="date" android:id="@+id/cashflow_startDate"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="End Date"/>
+        <EditText android:inputType="date" android:id="@+id/cashflow_endDate"/>
+    </TableRow>
+
+    <TableRow>
+        <Button android:id="@+id/cashflow_filter" android:text="Filter" android:layout_span="2"/>
+    </TableRow>
+
+    <TableRow>
+        <ListView android:id="@android:id/list" android:layout_span="2"/>
+    </TableRow>
+
+</TableLayout>
